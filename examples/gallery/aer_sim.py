@@ -67,10 +67,7 @@ swap(circuit, 0, 2)
 
 # transpile and plot the graph
 pattern = circuit.transpile().pattern
-nodes, edges = pattern.get_graph()
-g = nx.Graph()
-g.add_nodes_from(nodes)
-g.add_edges_from(edges)
+g = pattern.extract_graph()
 np.random.seed(100)
 nx.draw(g)
 plt.show()
