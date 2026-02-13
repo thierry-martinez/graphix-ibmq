@@ -110,7 +110,8 @@ class IBMQPatternCompiler:
 
     def _apply_m(self, cmd: M) -> None:
         """Handles the M command: perform a measurement."""
-        if cmd.plane != Plane.XY:
+        measurement = cmd.measurement.to_bloch()
+        if measurement.plane != Plane.XY:
             raise NotImplementedError("Non-XY plane measurements are not supported.")
 
         circ_idx = self._qubit_map[cmd.node]
@@ -118,8 +119,8 @@ class IBMQPatternCompiler:
         self._apply_classical_feedforward("X", circ_idx, cmd.s_domain)
         self._apply_classical_feedforward("Z", circ_idx, cmd.t_domain)
 
-        if cmd.angle != 0:
-            self._circuit.p(-cmd.angle * np.pi, circ_idx)
+        if measurement.angle != 0:
+            self._circuit.p(-measurement.angle * np.pi, circ_idx)
 
         self._circuit.h(circ_idx)
         self._circuit.measure(circ_idx, self._next_creg_idx)
