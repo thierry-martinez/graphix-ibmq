@@ -35,7 +35,7 @@ info = {
         "Operating System :: OS Independent",
         "Topic :: Scientific/Engineering :: Physics",
     ],
-    "python_requires": ">=3.10,<3.14",
+    "python_requires": ">=3.10,<3.15",
     "install_requires": requirements,
     "extras_require": {"test": ["graphix"]},
 }

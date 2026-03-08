@@ -2,4 +2,4 @@ numpy
 qiskit>=1.0,<2
 qiskit_ibm_runtime
 qiskit-aer
-graphix @ git+https://github.com/thierry-martinez/graphix@fix/181-pauli_plane_measurements
+graphix @ git+https://github.com/TeamGraphix/graphix@master
