@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from graphix import Circuit
+from graphix.fundamentals import rad_to_angle
 from qiskit import QuantumCircuit, transpile
 
 
@@ -28,9 +29,9 @@ def qiskit_to_graphix(qc: QuantumCircuit) -> Circuit:
         circuit.h(idx)
     for ci in qc.data:
         if ci.operation.name == "rx":
-            circuit.rx(ci.qubits[0]._index, ci.operation.params[0])
+            circuit.rx(ci.qubits[0]._index, rad_to_angle(ci.operation.params[0]))
         elif ci.operation.name == "rz":
-            circuit.rz(ci.qubits[0]._index, ci.operation.params[0])
+            circuit.rz(ci.qubits[0]._index, rad_to_angle(ci.operation.params[0]))
         elif ci.operation.name == "cx":
             circuit.cnot(ci.qubits[0]._index, ci.qubits[1]._index)
         else:
