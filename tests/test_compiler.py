@@ -32,7 +32,7 @@ def test_ibmq_compiler_statevector_equivalence(nqubits, depth):
     for _ in range(5):  # repeat with different random circuits
         circuit = rc.rand_circuit(nqubits, depth)
         pattern = circuit.transpile().pattern
-        mbqc_state = pattern.simulate_pattern()
+        mbqc_state = pattern.simulate()
 
         compiler = IBMQPatternCompiler(pattern)
         compiled = compiler.compile(save_statevector=True)
